@@ -21,13 +21,8 @@
     ref
   } from 'vue';
 
-  import {
-    Autoplay
-  } from 'swiper';
-  import {
-    Swiper,
-    SwiperSlide
-  } from 'swiper/vue';
+  import {Autoplay} from 'swiper';
+  import {Swiper,SwiperSlide} from 'swiper/vue';
   import 'swiper/css';
 
   import VisualList from '@/components/VisualList.vue';
@@ -40,34 +35,34 @@
     },
     setup() {
       const slideData = ref([]);
-      slideData.value = [{
-          vimg: 'PC_minimal_new.png',
-          vtitle: "제품1",
-          vtxt: "국내 최초 100% <br />식품 그레이드 성분",
-          vbt: "SHOP",
-          vlink: "#"
-        },
-        {
-          vimg: 'PC1_newborn.png',
-          vtitle: "제품2",
-          vtxt: "국내 최초 100% <br />식품 그레이드 성분",
-          vbt: "SHOP",
-          vlink: "#"
-        },
-        {
-          vimg: 'PC2_BabyEssence.png',
-          vtitle: "제품3",
-          vtxt: "국내 최초 100% <br />식품 그레이드 성분",
-          vbt: "SHOP",
-          vlink: "#"
-        },
-        {
-          vimg: 'PC3_Branding.png',
-          vtitle: "제품4",
-          vtxt: "국내 최초 100% <br />식품 그레이드 성분",
-          vbt: "SHOP",
-          vlink: "#"
-        }
+      slideData.value = [      {
+        vimg:'PC_minimal_new.png',
+        vtitle:"미니멀비 출시",
+        vtxt:"아이부터 어른까지 <br />클린 포뮬러 저자극 케어",
+        vbt:"SHOP",
+        vlink:"#"
+      },
+      {
+        vimg:'PC1_newborn.png',
+        vtitle:"SPECIAL OFFER",
+        vtxt:"노엘로 힐스가 제안하는<br> 아기 스킨케어 출산준비물",
+        vbt:"SHOP",
+        vlink:"#"
+      },
+      {
+        vimg:'PC2_BabyEssence.png',
+        vtitle:"밀크 에센스 로션",
+        vtxt:"아기 피부의 미래를 결정해주는<br> 베이비 에센스",
+        vbt:"SHOP",
+        vlink:"#"
+      },
+      {
+        vimg:'PC3_Branding.png',
+        vtitle:"8:23 PM",
+        vtxt:"가족에게 행복을 선사하는<br> 스킨케어 라이프스타일 브랜드",
+        vbt:"SHOP",
+        vlink:"#"
+      }
       ];
 
       return {
