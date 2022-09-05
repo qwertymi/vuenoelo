@@ -10,12 +10,12 @@
       <div class="mb-wrap">
         <ul class="mb-menu">
 
-          <li v-for="(item, index) in mbmenu" v-bind:key="index">
+          <li v-for="(item, index) in mbMenuData" v-bind:key="index">
             <span class="mb-mainmenu" v-if="item.menuType == 'S'">{{item.mainText}}</span>
             <a v-bind:href="item.mainLink" class="mb-mainmenu" v-if="item.menuType == 'A'">{{item.mainText}}</a>
 
             <ul class="mb-submenu" v-if="item.menuType == 'S'">
-              <li v-for="(subitem,subindex) in mbmenu.subArr" v-bind:key="subindex">
+              <li v-for="(subitem,subindex) in mbMenuData.subArr" v-bind:key="subindex">
                 <a v-bind:href="subitem.link">{{subitem.title}}</a>
               </li>
             </ul>
@@ -29,18 +29,22 @@
 </template>
 
 <script>
+import {useStore} from 'vuex'
   import {
-    onMounted
+    onMounted, computed
   } from 'vue';
   import $ from 'jquery';
 
   export default {
 
-    props: [
-      'mbmenu'
-    ],
-
     setup() {
+
+      const store = useStore();
+      // const mbMenuData = ref([]);
+      // mbMenuData.value = store.state.mbMenuData;
+      const mbMenuData = computed( () => store.getters.getMbMenuData );
+
+
       // 화면에 html 구성 완료되면, 
 
       // 화면에 html 의 구성이 완료되면
@@ -110,7 +114,7 @@
       });
 
       return {
-
+        mbMenuData
       }
 
     }
