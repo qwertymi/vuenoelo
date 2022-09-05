@@ -23,15 +23,18 @@
           </li>
         </ul>
       </div>
-      
+
     </div>
   </div>
 </template>
 
 <script>
-import {useStore} from 'vuex'
   import {
-    computed, onUpdated
+    useStore
+  } from 'vuex'
+  import {
+    computed,
+    onUpdated
   } from 'vue';
   import $ from 'jquery';
 
@@ -42,7 +45,7 @@ import {useStore} from 'vuex'
       const store = useStore();
       // const mbMenuData = ref([]);
       // mbMenuData.value = store.state.mbMenuData;
-      const mbMenuData = computed( () => store.getters.getMbMenuData );
+      const mbMenuData = computed(() => store.getters.getMbMenuData);
 
       // 화면에 html 의 구성이 완료되면
       onUpdated(() => {
@@ -55,46 +58,37 @@ import {useStore} from 'vuex'
           mb_div.show();
         });
 
-
-        // 배경 누르면 닫기
+        // 모바일 닫기 버튼 기능
+        let mb_close = $('.mb-close');
+        mb_close.click(function () {
+          mb_div.hide();
+        });
         mb_div.click(function () {
           mb_div.hide();
         });
 
-        // 내용을 클릭하면 배경 신호 전달 막기
         $('.mb-bg').click(function (event) {
-          // 신호 전달 막기
           event.stopPropagation();
         });
 
         // 모바일 메뉴 기능
         let mb_menu_li = $(' .mb-menu > li ');
         $.each(mb_menu_li, function (index) {
-          // mb-mainmenu 를 찾아서 보관
           let temp = $(this).find('.mb-mainmenu');
           temp.click(function () {
-            // 펼쳐져 있는 경우 true, 없으면 false
             let result = temp.hasClass('mb-mainmenu-open');
 
             if (result == true) {
-              // 펼쳐진 클래스 가진 경우
               temp.removeClass('mb-mainmenu-open');
-              // 펼쳐진 서브 메뉴 닫기
               mb_menu_li.find('.mb-submenu').hide();
 
             } else {
-              // 모든 클래스를 일단 제거한다.
               mb_menu_li.find('.mb-mainmenu').removeClass('mb-mainmenu-open');
-              // 모든 펼쳐진 서브메뉴를 닫는다.
               mb_menu_li.find('.mb-submenu').hide();
 
-              // 펼쳐진 클래스 없는 경우
               temp.addClass('mb-mainmenu-open');
-              // 서브메뉴 펼치기
               mb_menu_li.eq(index).find('.mb-submenu').show();
-
             }
-
           });
 
         });

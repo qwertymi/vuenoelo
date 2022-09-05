@@ -1,22 +1,29 @@
 <template>
   <div class="banner">
-    <div class="swiper-container sw-banner">
       <!-- 슬라이드 내용 -->
-      <div class="swiper-wrapper">
+      <Swiper
+      :modules="modules"
+      :effect="'fade'"
+      :autoplay="{
+        delay: 2000,
+        disableOnIteraction:false}"
+      :speed="1500"
+      :loop="true"
+      :pagination="{
+        el: '.sw-banner-pg'}"
+      class="sw-banner">
 
-        <div class="swiper-slide">
+        <SwiperSlide class="swiper-slide">
           <a href="#" class="banner-1"></a>
-        </div>
+        </SwiperSlide>
 
-        <div class="swiper-slide">
+        <SwiperSlide class="swiper-slide">
           <a href="#" class="banner-2"></a>
-        </div>
+        </SwiperSlide>
 
-        <div class="swiper-slide">
+        <SwiperSlide class="swiper-slide">
           <a href="#" class="banner-3"></a>
-        </div>
-
-      </div>
+        </SwiperSlide>
 
       <!-- 슬라이드 콘트롤 -->
       <div class="sw-banner-control">
@@ -24,20 +31,29 @@
         <div class="sw-banner-pg"></div>
       </div>
 
-    </div>
+      </Swiper>
+
     <button class="banner-close"></button>
   </div>
 
 </template>
 
 <script>
-  import {
-    onMounted
-  } from 'vue';
+  import {Autoplay,Pagination,EffectFade} from 'swiper';
+  import {Swiper,SwiperSlide} from 'swiper/vue';
+  import 'swiper/css';
+  import 'swiper/css/pagination';
+  import "swiper/css/effect-fade";
+  import {onMounted} from 'vue';
   import $ from 'jquery';
-import { ref } from 'vue';
+  import { ref } from 'vue';
 
   export default {
+    components: {
+      Swiper,
+      SwiperSlide
+    },
+
     setup() {
     onMounted( () => {
       // banner 의 높이값 px
@@ -54,7 +70,8 @@ import { ref } from 'vue';
 
     });
 
-    return {      
+    return {    
+      modules: [Autoplay,Pagination,EffectFade]
     }
   }
 }
@@ -103,6 +120,7 @@ import { ref } from 'vue';
   }
 
   .banner .sw-banner .sw-banner-control .sw-banner-pg .swiper-pagination-bullet {
+    display: inline-block;
     width: 10px;
     height: 4px;
     border-radius: 0;
