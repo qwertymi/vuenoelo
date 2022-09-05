@@ -70,16 +70,7 @@
         }
       ];
 
-
-      const onSwiper = (swiper) => {
-        console.log(swiper);
-      };
-      const onSlideChange = () => {
-        console.log('slide change');
-      };
       return {
-        onSwiper,
-        onSlideChange,
         modules: [Autoplay],
         slideData
       }

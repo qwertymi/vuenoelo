@@ -15,7 +15,7 @@
             <a v-bind:href="item.mainLink" class="mb-mainmenu" v-if="item.menuType == 'A'">{{item.mainText}}</a>
 
             <ul class="mb-submenu" v-if="item.menuType == 'S'">
-              <li v-for="(subitem,subindex) in mbMenuData.subArr" v-bind:key="subindex">
+              <li v-for="(subitem,subindex) in item.subArr" v-bind:key="subindex">
                 <a v-bind:href="subitem.link">{{subitem.title}}</a>
               </li>
             </ul>
@@ -31,7 +31,7 @@
 <script>
 import {useStore} from 'vuex'
   import {
-    onMounted, computed
+    computed, onUpdated
   } from 'vue';
   import $ from 'jquery';
 
@@ -44,11 +44,8 @@ import {useStore} from 'vuex'
       // mbMenuData.value = store.state.mbMenuData;
       const mbMenuData = computed( () => store.getters.getMbMenuData );
 
-
-      // 화면에 html 구성 완료되면, 
-
       // 화면에 html 의 구성이 완료되면
-      onMounted(() => {
+      onUpdated(() => {
         // 모바일 메뉴
         let mb_div = $('.mb-div');
 
